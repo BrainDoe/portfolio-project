@@ -1,0 +1,118 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Form</title>
+  <style>
+    body {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      height: 100vh;
+      background-color: #acedbf;
+      overflow-x: hidden;
+    }
+
+    .container {
+      width: 400px;
+      margin: 0 auto;
+      background-color: aliceblue;
+    }
+
+    form {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      height: 100%;
+      padding: 30px 0;
+    }
+
+    .form-group {
+      position: relative;
+      padding: 20px 20px;
+      align-items: center;
+      justify-content: center;
+      display: flex;
+      transition: all .5s ease;
+    }
+
+    .form-group.active-form {
+      opacity: 1;
+      transform: translate(-0%, -0%);
+      visibility: visible;
+    }
+
+    .form-group input {
+      padding: 10px 15px;
+      width: 100%;
+      border: none;
+      font-size: 17px;
+      font-weight: 600;
+      color: rgb(111, 111, 116);
+      font-family: sans-serif;
+    }
+
+    .form-group input:focus {
+      outline: none;
+      border: 1px solid orange;
+    }
+
+    .form-group label {
+      position: absolute;
+      top: 30px;
+      left: 25px;
+      font-family: sans-serif;
+      pointer-events: none;
+      transition: all .4s ease;
+    }
+
+    .form-group input:focus+label,
+    .form-group input.has-value+label {
+      top: 0;
+      font-size: 14px;
+      font-weight: bold;
+      color: orange;
+    }
+  </style>
+</head>
+
+<body>
+  <div class="container">
+    <form>
+      <div class="form-group active-form">
+        <input type="text" id="first-name" autocomplete="off">
+        <label for="name">First Name</label>
+      </div>
+      <!-- <div class="form-group inactive">
+        <input type=" text" id="last-name">
+        <label for="name">Last Name</label>
+      </div>
+      <div class="form-group inactive">
+        <input type="email" id="email">
+        <label for="name">Your Email</label>
+      </div> -->
+    </form>
+  </div>
+
+  <script>
+
+    const form = document.querySelector('form');
+    const inputs = document.querySelectorAll('input');
+
+    inputs.forEach(input => {
+      input.addEventListener('blur', () => {
+        const inputValue = input.value;
+        if (inputValue === '') {
+          input.classList.remove('has-value');
+        } else {
+          input.classList.add('has-value');
+        }
+      });
+    });
+
+  </script>
+</body>
+
+</html>
